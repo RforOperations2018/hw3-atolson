@@ -1,0 +1,32 @@
+---
+title: "Assignment 3"
+author: "Andrew Olson"
+date: "September 26, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#Loading required libraries
+require(rgdal)
+require(leaflet)
+require(leaflet.extras)
+
+require(dplyr)
+require(readxl)
+require(stringr)
+
+```
+
+
+
+```{r}
+#Loading spatial data
+  
+```
+
+
+```{r}
+
+```
+
+
