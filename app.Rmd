@@ -25,15 +25,23 @@ pacnty.load <- readOGR("./PA_Counties_clip/PA_Counties_clip.shp", layer = "PA_Co
 plot(pacnty.load)
 
 #loading economic data
-econ.load <- read.csv("./ACS_17_1YR_S2503/ACS_17_1YR_S2503_with_ann.csv")
+econ.load <- read.csv("./aff_download/ACS_16_5YR_S1903_with_ann.csv")
 
 # merging spatial & econ data
-pacnty <- pacnty.load[pacnty.load$NAME %in% econ.load$COUNTY,]
-pacnty@data <- merge(pacnty@data, econ.load, sort = FALSE, by.x = "NAME", by.y = "COUNTY")
+pacnty <- pacnty.load[pacnty.load$NAME %in% econ.load$County,]
+pacnty@data <- merge(pacnty@data, econ.load, sort = FALSE, by.x = "NAME", by.y = "County")
 ```
 
 
 ```{r}
+#leaflet plot with median income colored
+pal <- colorNumeric(
+  palette = "Blues",
+  domain = pacnty$Median_Income)
 
+leaflet(data = pacnty) %>%
+  addProviderTiles("Esri.WorldTopoMap", options = providerTileOptions(noWrap = TRUE)) %>%
+  addPolygons(color = ~pal(`Median_Income`), popup = ~paste0("<b>", NAME, ":</b> $", format(Median_Income, big.mark = ","))) %>%
+  addLegend(position = "bottomright", pal = pal, values = pacnty$Median_Income, title = "Median Income by County (dollars)")
 ```
 
