@@ -34,14 +34,18 @@ pacnty@data <- merge(pacnty@data, econ.load, sort = FALSE, by.x = "NAME", by.y =
 
 
 ```{r}
-#leaflet plot with median income colored
+#palette defined
 pal <- colorNumeric(
   palette = "Blues",
   domain = pacnty$Median_Income)
 
+#leaflet plot with PA median income colored
 leaflet(data = pacnty) %>%
   addProviderTiles("Esri.WorldTopoMap", options = providerTileOptions(noWrap = TRUE)) %>%
   addPolygons(color = ~pal(`Median_Income`), popup = ~paste0("<b>", NAME, ":</b> $", format(Median_Income, big.mark = ","))) %>%
-  addLegend(position = "bottomright", pal = pal, values = pacnty$Median_Income, title = "Median Income by County (dollars)")
+  addLegend(position = "topright", pal = pal, values = pacnty$Median_Income, title = "Median Income by County (dollars)")
 ```
 
+```{r}
+
+```
