@@ -19,7 +19,7 @@ require(stringr)
 
 
 
-```{r echo=TRUE}
+```{r echo=TRUE, include=FALSE}
 #Loading Data
 # loading spatial data
 pacnty.load <- readOGR("./PA_Counties_clip/PA_Counties_clip.shp", layer = "PA_Counties_clip", GDAL1_integer64_policy = TRUE)
