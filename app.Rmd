@@ -21,12 +21,19 @@ require(stringr)
 
 ```{r}
 #Loading spatial data
-  
+pacnty.load <- readOGR("./PA_Counties_clip/PA_Counties_clip.shp", layer = "PA_Counties_clip", GDAL1_integer64_policy = TRUE)
+plot(pacnty.load)
+
+#loading economic data
+econ.load <- read.csv("./ACS_17_1YR_S2503/ACS_17_1YR_S2503_with_ann.csv")
+
+# merging spatial & econ data
+pacnty <- pacnty.load[pacnty.load$NAME %in% econ.load$COUNTY,]
+pacnty@data <- merge(pacnty@data, econ.load, sort = FALSE, by.x = "NAME", by.y = "COUNTY")
 ```
 
 
 ```{r}
 
 ```
-
 
