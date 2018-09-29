@@ -51,6 +51,7 @@ pal <- colorNumeric(
 #leaflet plot with PA median income colored
 leaflet(data = pacnty) %>%
   addProviderTiles("Esri.WorldTopoMap", options = providerTileOptions(noWrap = TRUE)) %>%
+  # The lights on this are hard to tell given the basemap, you might have benefited from a darker basemap, or a different palette color
   addPolygons(color = ~pal(`Median_Income`), popup = ~paste0("<b>", NAME, ":</b> $", format(Median_Income, big.mark = ","))) %>%
   addLegend(position = "topright", pal = pal, values = pacnty$Median_Income, title = "Median Income by County (dollars)")
   
@@ -62,6 +63,7 @@ leaflet(data = pacnty) %>%
 #leaflet plot with Rail Lines
 leaflet(data = rail) %>%
   addProviderTiles("Stamen.Toner", options = providerTileOptions(noWrap = TRUE)) %>%
+  # Like this one!
   addPolylines(color = "#a8ddb5")
 ```
 
